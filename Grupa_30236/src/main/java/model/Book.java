@@ -2,7 +2,11 @@ package model;
 
 // Java Bean -
 
+// POJO - Plain Old Java Object
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.property.StringProperty;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -15,7 +19,14 @@ public class Book{
     private String title;
 
     private LocalDate publishedDate;
+    private int stock;
+    public int getStock() {
+        return stock;
+    }
 
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
     public Long getId() {
         return id;
@@ -47,5 +58,23 @@ public class Book{
 
     public void setPublishedDate(LocalDate publishedDate) {
         this.publishedDate = publishedDate;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Id: %d | Title: %s | Author: %s | Date: %s", this.id, this.title, this.author, this.publishedDate);
+    }
+
+
+    public StringProperty titleProperty() {
+        return new SimpleStringProperty(this.title);
+    }
+
+    public StringProperty authorProperty() {
+        return new SimpleStringProperty(this.author);
+    }
+
+    public StringProperty publishedDateProperty() {
+        return new SimpleStringProperty(String.valueOf(this.publishedDate));
     }
 }
